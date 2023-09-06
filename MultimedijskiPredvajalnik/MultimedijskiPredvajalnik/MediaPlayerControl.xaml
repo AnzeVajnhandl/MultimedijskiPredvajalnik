@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="MultimedijskiPredvajalnik.MediaPlayerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="450">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourcesDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <DockPanel>
+            <Button Style="{DynamicResource ButtonStyle}" Click="PrevVideo">
+                <Image Style="{DynamicResource IconStyle}" Source="Resources\PreviousIcon.png"/>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}"  Command ="{Binding UpdateCurrentlyPlayingCommand}" Click="PlayVideo">
+                <Image Style="{DynamicResource IconStyle}" Source="Resources\PlayIcon.png"/>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Click="PauseVideo">
+                <Image Style="{DynamicResource IconStyle}" Source="Resources\PauseIcon.png"/>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Click="StopVideo">
+                <Image Style="{DynamicResource IconStyle}" Source="Resources\StopVideoIcon.png"/>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}"  Click="ReplayVideo">
+                <Image Style="{DynamicResource IconStyle}" Source="Resources\ReplayIcon.png"/>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}">
+                <Image Style="{DynamicResource IconStyle}" Source="Resources\ShuffleIcon.png"/>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Click="NextVideo">
+                <Image Style="{DynamicResource IconStyle}" Source="Resources\NextIcon.png"/>
+            </Button>
+        </DockPanel>
+    </Grid>
+</UserControl>

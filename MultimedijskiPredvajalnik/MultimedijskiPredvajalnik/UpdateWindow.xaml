@@ -1,0 +1,60 @@
+﻿<Window x:Class="MultimedijskiPredvajalnik.UpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Properties="clr-namespace:MultimedijskiPredvajalnik.Properties"
+        xmlns:local="clr-namespace:MultimedijskiPredvajalnik"
+        Deactivated="Window_Deactivated"
+        Closing="CloseWindow2"
+        mc:Ignorable="d"
+        Title="UpdateWindow" Height="420" Width="500" MinHeight="420" MinWidth="500">
+
+    <Window.Resources>
+        <local:UnknownConverter x:Key="UnknownConverter" />
+    </Window.Resources>
+
+    <Grid Style="{DynamicResource GridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Style="{DynamicResource TitleStyle}" Grid.Row ="0" Grid.Column="1">UREDI POSNETEK</Label>
+
+        <Label Style="{DynamicResource AddUpdateLabelStyle}" Grid.Row ="1" Grid.Column="0" Margin="10">Naslov:</Label>
+        <TextBox Style="{DynamicResource TextBoxStyle}" Text ="{Binding SelectedItem.Title}" Grid.Row ="1" Grid.Column="1" Grid.ColumnSpan="2" Name="InputTitle" Margin="10"></TextBox>
+
+        <Label Style="{DynamicResource AddUpdateLabelStyle}" Grid.Row ="2" Grid.Column="0" Margin="10">Datoteka:</Label>
+        <Label Content="{Binding SelectedItem.Path}" Name="InputPath" Grid.Row ="2" Grid.Column="1" IsHitTestVisible="False"></Label>
+        <Button Style="{DynamicResource TextBoxButtonStlye}" Grid.Row ="2" Grid.Column="2" Name="OpenMediaFile" Click="NewMediaFile">DODAJ</Button>
+
+        <Label Style="{DynamicResource AddUpdateLabelStyle}" Grid.Row ="3" Grid.Column="0" Margin="25">Slika:</Label>
+    
+        <Button Name="OpenImageFile" Grid.Row ="3" Grid.Column="1" Width="70" Height="70" Click="NewImageFile" Margin="10">
+            <Image Width="70" Height="70" Name="InputImage" Source="{Binding SelectedItem.Image}"></Image>
+        </Button>
+
+        <Label Style="{DynamicResource AddUpdateLabelStyle}" Grid.Row ="4" Grid.Column="0"  Margin="10">Zvrst:</Label>
+        <ComboBox Style="{DynamicResource ComboBoxStyle}" Name="SelectedZvrst" Grid.Row ="4" Grid.Column="1" ItemsSource="{Binding Source={x:Static Properties:Settings.Default}, Path=Zvrsti}" 
+          SelectedItem="{Binding SelectedItem.Genre, Converter={StaticResource UnknownConverter}, FallbackValue='Unknown'}" Margin="10"/>
+
+        <Label Style="{DynamicResource AddUpdateLabelStyle}" Grid.Row ="5" Grid.Column="0" Margin="10" >Avtor:</Label>
+        <TextBox Style="{DynamicResource TextBoxStyle}" Text ="{Binding SelectedItem.Author}" Grid.Row ="5" Grid.Column="1" Grid.ColumnSpan="2" Name="InputAuthor"></TextBox>
+
+        <StackPanel Grid.Row ="6" Grid.Column="1" Orientation="Horizontal" Margin="10">
+            <Button Style="{DynamicResource TextBoxButtonStlye}" Command="{Binding UpdateCommand}" Name="SaveNewMediaFile">SHRANI</Button>
+            <Button Style="{DynamicResource TextBoxButtonStlye}" Name="Cancel" Click="CloseWindow">PREKLIČI</Button>
+        </StackPanel>
+    </Grid>
+</Window>
